@@ -12,6 +12,8 @@ Les requêtes ci-dessous valident la disponibilité minimale, pas la qualité co
 
 ## Résultats vérifiés
 
+Contrôle OmniRoute réexécuté le 28 août 2026 avec Hermes CLI : les trois requêtes ont renvoyé exactement les chaînes attendues, chacune avec un code de sortie `0`.
+
 | Provider       | Modèle demandé         | Déclaré / route | Requête réelle | Résultat                                                     |
 | -------------- | ---------------------- | --------------: | -------------: | ------------------------------------------------------------ |
 | OmniRoute      | `auto/claude-sonnet`   |             oui |            oui | texte exact `OMNIROUTE_OK`, exit 0                           |
