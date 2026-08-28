@@ -1,0 +1,30 @@
+{
+  "name": "ax-erp360",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AX-ERP360 — plateforme ERP nouvelle génération d’AXORA GROUP SARLU",
+  "packageManager": "pnpm@11.4.0",
+  "engines": {
+    "node": ">=24.0.0 <25"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter @ax-erp360/api --filter @ax-erp360/web dev",
+    "build": "pnpm db:generate && pnpm -r build",
+    "build:packages": "pnpm --filter @ax-erp360/types build && pnpm --filter @ax-erp360/validation build && pnpm --filter @ax-erp360/security build && pnpm --filter @ax-erp360/database build && pnpm --filter @ax-erp360/domain build && pnpm --filter @ax-erp360/ui build",
+    "typecheck": "pnpm db:generate && pnpm build:packages && pnpm -r typecheck",
+    "lint": "pnpm db:generate && pnpm build:packages && pnpm -r lint",
+    "test": "pnpm build:packages && pnpm -r test",
+    "check": "pnpm format:check && pnpm db:format:check && pnpm db:validate && pnpm typecheck && pnpm lint && pnpm test && pnpm build",
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write .",
+    "db:generate": "pnpm --filter @ax-erp360/database prisma:generate",
+    "db:format": "pnpm --filter @ax-erp360/database prisma:format",
+    "db:format:check": "pnpm --filter @ax-erp360/database prisma:format:check",
+    "db:validate": "pnpm --filter @ax-erp360/database prisma:validate",
+    "db:migrate:dev": "pnpm --filter @ax-erp360/database prisma:migrate:dev",
+    "db:migrate:deploy": "pnpm --filter @ax-erp360/database prisma:migrate:deploy"
+  },
+  "devDependencies": {
+    "prettier": "3.6.2"
+  }
+}

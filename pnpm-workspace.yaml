@@ -1,0 +1,14 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+overrides:
+  "@prisma/client": "7.9.1"
+  prisma: "7.9.1"
+  typescript: "5.9.3"
+
+# pnpm 11 bloque les scripts de cycle de vie non approuvés.
+# Cette liste restera exacte et sera régénérée après le premier lockfile.
+allowBuilds:
+  "@prisma/engines@7.9.1": true
+  "prisma@7.9.1": true
