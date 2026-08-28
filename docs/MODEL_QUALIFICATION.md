@@ -14,6 +14,8 @@ Les requêtes ci-dessous valident la disponibilité minimale, pas la qualité co
 
 Contrôle OmniRoute réexécuté le 28 août 2026 avec Hermes CLI : les trois requêtes ont renvoyé exactement les chaînes attendues, chacune avec un code de sortie `0`.
 
+Contrôle Copilot réexécuté le 28 août 2026 : `claude-sonnet-4.6` et `gpt-5.4` ont tous deux renvoyé les chaînes exactes `COPILOT_SONNET_OK` / `COPILOT_GPT_OK` avec un code de sortie `0`.
+
 | Provider       | Modèle demandé         | Déclaré / route | Requête réelle | Résultat                                                     |
 | -------------- | ---------------------- | --------------: | -------------: | ------------------------------------------------------------ |
 | OmniRoute      | `auto/claude-sonnet`   |             oui |            oui | texte exact `OMNIROUTE_OK`, exit 0                           |
