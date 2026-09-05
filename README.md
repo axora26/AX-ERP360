@@ -63,3 +63,7 @@ Elles ne doivent être considérées opérationnelles qu’après création des 
 - Une action est fonctionnelle, désactivée ou marquée **À venir**.
 - Aucun statut `PASS` n’est attribué sans contrôle exécuté.
 - Aucun secret réel ne doit être commité.
+
+## Nouvelle interface de demonstration
+
+Consulter [le guide de lancement et les captures](docs/FRONTEND_PREVIEW.md) et [les preuves et limites de cette livraison](docs/status/20260905-FRONTEND-RECOVERY.md). Le controle `check:web` ne qualifie pas le serveur metier.

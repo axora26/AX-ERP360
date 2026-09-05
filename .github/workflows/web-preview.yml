@@ -1,0 +1,45 @@
+name: Web preview quality
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: web-preview-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4, verified ref
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4, verified ref
+        with:
+          node-version: "24"
+      - name: Install pinned package manager
+        run: npm install --global pnpm@11.4.0
+      - name: Install from lockfile without lifecycle scripts
+        run: pnpm install --frozen-lockfile --ignore-scripts
+      - name: Verify formatting
+        run: pnpm exec prettier --check --ignore-path .gitignore apps/web package.json pnpm-lock.yaml .github/workflows/web-preview.yml docs/FRONTEND_PREVIEW.md docs/status/20260905-FRONTEND-RECOVERY.md
+      - name: Typecheck, lint, unit tests and production build
+        run: pnpm run check:web
+      - name: Install Chromium for browser tests
+        run: pnpm --filter @ax-erp360/web exec playwright install --with-deps chromium
+      - name: Browser, responsive and automated accessibility tests
+        run: pnpm --filter @ax-erp360/web test:e2e
+      - name: Archive browser evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4, verified ref
+        with:
+          name: web-preview-${{ github.sha }}
+          path: |
+            apps/web/playwright-report/
+            apps/web/test-results/
+          if-no-files-found: ignore
+          retention-days: 7
