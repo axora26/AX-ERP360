@@ -65,6 +65,6 @@ C:/Users/dmgpe/AX-ERP360-wt/devops         agent/devops
 
 Une branche ne modifie pas le fichier propriétaire d’une autre branche sans transfert d’ownership documenté dans la PR.
 
-## Statut de l’orchestration
+## Statut de l'orchestration
 
-Cette matrice est définie. Les branches et worktrees ne seront créés qu’après le premier commit de base, car le dépôt distant est actuellement vide et ne possède pas de commit de référence.
+La matrice ci-dessus est un plan de repartition. Le depot possede des commits et une branche de refonte. Voir `status/20260905-FRONTEND-RECOVERY.md` pour le constat actuel : aucun nouvel agent Hermes lance lors de cette reprise.
